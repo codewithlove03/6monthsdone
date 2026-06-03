@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 Months With You 🌸</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<!-- Canvas Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<style>
+/* ========== GLOBAL ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --rose: #e8506a;
+  --rose-light: #f9ccd5;
+  --rose-dark: #b0324a;
+  --cream: #fdf6f0;
+  --warm: #f5e6d8;
+  --gold: #d4a853;
+  --choco: #5c2e0e;
+  --deep: #1a0a0f;
+  --text: #3a1a26;
+  --soft: #9b6b7a;
+  --mint: #a8d8b9;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 18px; height: 18px;
+  border: 2px solid var(--rose);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease;
+  mix-blend-mode: multiply;
+}
+.cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--rose);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+}
+
+/* ========== HERO ========== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0a0f 0%, #3d1025 40%, #6b1f3a 70%, #1a0a0f 100%);
+}
+
+.hero-bg-anim {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(232,80,106,0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 60%, rgba(212,168,83,0.15) 0%, transparent 50%);
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* Floating petals */
+.petal {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: floatDown linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes floatDown {
+  0%   { transform: translateY(-60px) rotate(0deg) translateX(0px); opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(110vh) rotate(720deg) translateX(60px); opacity: 0; }
+}
+
+.hero-counter {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 9vw, 7rem);
+  color: #fff;
+  line-height: 1.05;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.8s forwards;
+}
+
+.hero-title em {
+  color: var(--rose);
+  font-style: italic;
+  display: block;
+}
+
+.hero-subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: rgba(255,255,255,0.75);
+  margin-top: 24px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.2s forwards;
+}
+
+.hero-cta {
+  margin-top: 50px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.6s forwards;
+}
+
+.btn-start {
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: #fff;
+  border: none;
+  padding: 18px 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-radius: 60px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(232,80,106,0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-start::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-start:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 20px 60px rgba(232,80,106,0.6);
+}
+.btn-start:hover::before { opacity: 1; }
+
+.heart-bounce {
+  display: inline-block;
+  animation: heartBeat 1.2s ease-in-out infinite;
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.2); }
+  70% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== SECTION BASE ========== */
+.section {
+  min-height: 100vh;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: 0.7;
+  margin-bottom: 50px;
+}
+
+/* ========== GAME CONTAINER ========== */
+.game-wrap {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 40px;
+  max-width: 620px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.8);
+  position: relative;
+}
+
+.game-instructions {
+  text-align: center;
+  color: var(--soft);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.prize-reveal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 30px;
+  background: linear-gradient(135deg, var(--rose-light), #fff5f8);
+  border-radius: 20px;
+  border: 2px dashed var(--rose);
+  animation: bounceIn 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.prize-reveal.show { display: flex; }
+
+.prize-emoji { font-size: 4rem; animation: spin3d 0.8s ease; }
+
+@keyframes spin3d {
+  from { transform: rotateY(180deg) scale(0); }
+  to { transform: rotateY(0deg) scale(1); }
+}
+
+.prize-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--rose-dark);
+  text-align: center;
+}
+
+.prize-sub {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  color: var(--soft);
+  text-align: center;
+}
+
+@keyframes bounceIn {
+  0%  { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100%{ transform: scale(1); opacity: 1; }
+}
+
+/* ========== SECTION 1: CAKE GAME ========== */
+#cake-section {
+  background: linear-gradient(160deg, #fdf0f3 0%, #fff5e8 100%);
+}
+
+#cake-section .section-title { color: var(--rose-dark); }
+
+/* Candle Blow Game */
+.candles-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 20px 0 30px;
+  flex-wrap: wrap;
+}
+
+.candle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.candle-body {
+  width: 22px;
+  height: 70px;
+  background: linear-gradient(180deg, #f9a8d4, #fce7f3, #f472b6);
+  border-radius: 4px 4px 2px 2px;
+  position: relative;
+  box-shadow: inset -3px 0 6px rgba(0,0,0,0.1);
+}
+
+.candle-wick {
+  width: 3px;
+  height: 14px;
+  background: #555;
+  margin: 0 auto;
+  border-radius: 2px;
+  position: relative;
+}
+
+.candle-flame {
+  width: 18px;
+  height: 26px;
+  background: radial-gradient(ellipse at 50% 80%, #ffd700 0%, #ff6600 50%, rgba(255,80,0,0) 100%);
+  border-radius: 50% 50% 40% 40%;
+  position: relative;
+  margin: 0 auto;
+  animation: flicker 0.3s ease-in-out infinite alternate;
+  filter: blur(1px);
+  transition: all 0.3s ease;
+}
+
+.candle-flame::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 80%, #fff 0%, rgba(255,255,255,0) 100%);
+  border-radius: 50%;
+  top: 6px;
+  left: 5px;
+}
+
+@keyframes flicker {
+  from { transform: scaleX(1) skewX(2deg); height: 26px; }
+  to   { transform: scaleX(0.85) skewX(-3deg); height: 22px; }
+}
+
+.candle-wrap.blown .candle-flame {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.candle-wrap.blown .candle-body::after {
+  content: '💨';
+  position: absolute;
+  top: -20px;
+  left: -4px;
+  font-size: 1rem;
+  animation: puffAway 0.5s ease forwards;
+}
+
+@keyframes puffAway {
+  from { opacity: 1; transform: translateX(0) scale(0.8); }
+  to   { opacity: 0; transform: translateX(20px) scale(1.2); }
+}
+
+.cake-visual {
+  font-size: 6rem;
+  text-align: center;
+  display: block;
+  animation: bobble 2s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(232,80,106,0.3));
+}
+
+@keyframes bobble {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+#candle-progress {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  color: var(--rose);
+  margin-top: 10px;
+}
+
+/* ========== SECTION 2: LETTER GAME ========== */
+#letter-section {
+  background: linear-gradient(160deg, #fef9f0 0%, #f0f4ff 100%);
+}
+
+#letter-section .section-title { color: #4a3060; }
+
+.envelope-container {
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 20px auto;
+}
+
+.envelope {
+  width: 280px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.68,-0.55,0.27,1.55);
+}
+
+.envelope-back {
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #f5e6d8, #fce7f3);
+  border-radius: 8px;
+  position: absolute;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.envelope-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 110px solid #e8d0c0;
+  z-index: 1;
+}
+
+.envelope-left {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 0px solid transparent;
+  border-right: 145px solid #f0d8c8;
+  border-top: 100px solid transparent;
+  border-bottom: 100px solid transparent;
+  z-index: 1;
+}
+
+.envelope-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-right: 0px solid transparent;
+  border-left: 145px solid #e0c8b0;
+  border-top: 100px solid transparent;
+  border-bottom: 100px solid transparent;
+  z-index: 1;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 110px solid #d4a0b0;
+  z-index: 3;
+  transform-origin: top center;
+  transition: transform 0.8s cubic-bezier(0.68,-0.55,0.27,1.55);
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  font-size: 2rem;
+  transition: all 0.3s ease;
+}
+
+.envelope.open .envelope-seal { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+
+/* Letter inside */
+.letter-inside {
+  display: none;
+  background: #fffdf9;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid #f0d8c8;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  line-height: 1.9;
+  color: var(--text);
+  font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  animation: letterReveal 0.8s ease forwards;
+  max-width: 480px;
+}
+
+.letter-inside.show { display: block; }
+
+@keyframes letterReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.letter-inside p { margin-bottom: 14px; }
+.letter-inside .sign { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: var(--rose); text-align: right; margin-top: 24px; }
+
+/* Word Scramble */
+.word-scramble-game {
+  text-align: center;
+}
+
+.scramble-word {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4a3060;
+  letter-spacing: 10px;
+  margin: 20px 0;
+  text-shadow: 0 2px 10px rgba(74,48,96,0.2);
+}
+
+.scramble-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 14px 20px;
+  border: 2px solid #c4a0d8;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s ease;
+  color: #4a3060;
+  background: rgba(255,255,255,0.8);
+}
+
+.scramble-input:focus { border-color: #9b6b7a; box-shadow: 0 0 0 4px rgba(155,107,122,0.15); }
+
+.scramble-hint {
+  font-size: 0.85rem;
+  color: var(--soft);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.guess-btn {
+  background: linear-gradient(135deg, #9b6b7a, #6a3050);
+  color: #fff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+}
+.guess-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(155,107,122,0.4); }
+
+.shake { animation: shake 0.5s ease; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+}
+
+/* ========== SECTION 3: CHOCOLATE GAME ========== */
+#choco-section {
+  background: linear-gradient(160deg, #2c1008 0%, #4a1a0a 50%, #1a0a04 100%);
+  color: #fff;
+}
+
+#choco-section .section-title { color: #f9c784; }
+#choco-section .section-sub { color: rgba(249,199,132,0.7); }
+
+.choco-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto 24px;
+}
+
+.choco-box {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #5c2e0e, #8b4513, #5c2e0e);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4),
+              inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.05);
+}
+
+.choco-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  border-radius: 8px;
+}
+
+.choco-box:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 20px rgba(212,168,83,0.3);
+}
+
+.choco-box.revealed {
+  animation: chocoReveal 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  cursor: default;
+}
+
+.choco-box.revealed span {
+  font-size: 2rem;
+  animation: emojiPop 0.4s ease 0.2s both;
+}
+
+@keyframes chocoReveal {
+  0% { transform: scale(1); }
+  30% { transform: scale(0) rotateY(90deg); }
+  60% { transform: scale(0) rotateY(-90deg); background: #fff3e0; }
+  100% { transform: scale(1) rotateY(0deg); background: linear-gradient(145deg, #fff3e0, #ffe4c4); }
+}
+
+@keyframes emojiPop {
+  from { transform: scale(0) rotate(-10deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+#choco-counter {
+  text-align: center;
+  color: var(--gold);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+/* Memory match overlay */
+.choco-box.flipped { background: linear-gradient(145deg, #fff3e0, #ffe4c4); }
+.choco-box.flipped span { font-size: 2rem; }
+.choco-box.matched { opacity: 0.6; cursor: default; border: 2px solid var(--gold); }
+
+/* ========== SECTION 4: ROSE GAME ========== */
+#rose-section {
+  background: linear-gradient(160deg, #fff0f3 0%, #fce7f3 50%, #fdf2f8 100%);
+}
+
+#rose-section .section-title { color: var(--rose-dark); }
+
+.rose-garden {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 420px;
+  margin: 0 auto 20px;
+}
+
+.rosebud {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #555, #333);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  user-select: none;
+  filter: grayscale(1);
+  position: relative;
+  overflow: hidden;
+}
+
+.rosebud:hover {
+  transform: scale(1.1);
+}
+
+.rosebud.bloomed {
+  filter: grayscale(0);
+  background: linear-gradient(135deg, #ff6b8a, #ff8fab);
+  box-shadow: 0 8px 25px rgba(232,80,106,0.4);
+  animation: bloomPulse 0.5s ease;
+}
+
+@keyframes bloomPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.rosebud.bloomed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 60%);
+  border-radius: 50%;
+}
+
+#rose-counter {
+  text-align: center;
+  color: var(--rose-dark);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.bloom-all-btn {
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: #fff;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+  display: block;
+  margin: 0 auto 20px;
+}
+.bloom-all-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(232,80,106,0.4); }
+
+/* ========== SECTION 5: SPECIAL GIFT ========== */
+#special-section {
+  background: linear-gradient(135deg, #1a0a0f 0%, #2d0d1f 50%, #1a0a0f 100%);
+  color: #fff;
+}
+
+#special-section .section-title { color: var(--gold); }
+#special-section .section-sub { color: rgba(212,168,83,0.7); }
+
+.gift-box-3d {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  margin: 0 auto 40px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  animation: floatGift 3s ease-in-out infinite;
+}
+
+@keyframes floatGift {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  25% { transform: translateY(-15px) rotateY(5deg); }
+  75% { transform: translateY(-5px) rotateY(-5deg); }
+}
+
+.gift-base {
+  width: 160px;
+  height: 130px;
+  background: linear-gradient(135deg, #9b2335, #c0392b, #7b1a27);
+  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  box-shadow: 0 20px 60px rgba(155,35,53,0.5);
+}
+
+.gift-lid {
+  width: 170px;
+  height: 36px;
+  background: linear-gradient(135deg, #b52a3d, #d44055, #9b2335);
+  border-radius: 6px;
+  position: absolute;
+  top: 20px;
+  left: -5px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gift-bow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3.5rem;
+  animation: bowBounce 1.5s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes bowBounce {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1) rotate(5deg); }
+}
+
+.gift-ribbon-v {
+  width: 20px;
+  height: 130px;
+  background: linear-gradient(135deg, #ffd700, #d4a853, #ffd700);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.gift-ribbon-h {
+  width: 160px;
+  height: 20px;
+  background: linear-gradient(135deg, #ffd700, #d4a853, #ffd700);
+  position: absolute;
+  bottom: 55px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.gift-box-3d.opened .gift-lid {
+  transform: translateY(-60px) rotate(-20deg);
+}
+
+.mystery-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.mystery-text .gold { color: var(--gold); font-style: italic; }
+
+.sparkle-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.8rem;
+  margin: 20px 0;
+  animation: sparkleAnim 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkleAnim {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.3); }
+}
+
+/* ========== MAP SECTION ========== */
+#map-section {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #e8f4fd 0%, #f0e8f8 100%);
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#map-section .section-title { color: #2c3e8c; }
+
+#world-map-svg-wrap {
+  width: 100%;
+  max-width: 960px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(44,62,140,0.18);
+  border: 3px solid rgba(255,255,255,0.9);
+  background: linear-gradient(160deg, #dbeafe, #ede9fe);
+  margin: 0 auto;
+  position: relative;
+}
+
+#world-map-svg-wrap svg { display: block; width: 100%; height: auto; }
+
+.map-pin { cursor: pointer; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.map-pin:hover { transform: scale(1.3); }
+
+.map-tooltip {
+  position: absolute;
+  background: linear-gradient(135deg,#fff5f8,#fff);
+  border: 2px solid #f9ccd5;
+  border-radius: 14px;
+  padding: 7px 14px;
+  font-family: 'Dancing Script',cursive;
+  font-size: 1rem;
+  color: #b0324a;
+  box-shadow: 0 8px 30px rgba(232,80,106,0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+/* ========== TIMELINE NAV ========== */
+.nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(232,80,106,0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid var(--rose);
+}
+
+.nav-dot.active {
+  background: var(--rose);
+  transform: scale(1.3);
+}
+
+/* ========== FLOATING HEARTS ========== */
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+.fheart {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: floatHeart linear forwards;
+  opacity: 0;
+}
+
+@keyframes floatHeart {
+  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-120vh) scale(1.2) rotate(20deg); }
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--gold), var(--rose));
+  z-index: 10000;
+  transition: width 0.3s ease;
+  background-size: 200% 100%;
+  animation: gradientShift 3s linear infinite;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ========== PARTICLES ========== */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ========== UTIL ========== */
+.flex-col { display: flex; flex-direction: column; align-items: center; }
+.mt-4 { margin-top: 16px; }
+.text-center { text-align: center; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 600px) {
+  .choco-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .choco-box { width: 68px; height: 68px; }
+  .rose-garden { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .rosebud { width: 56px; height: 56px; font-size: 1.4rem; }
+  .game-wrap { padding: 24px 18px; }
+  .candles-row { gap: 16px; }
+  #world-map { height: 320px; }
+}
+
+/* 3D card hover effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+.card-3d:hover {
+  transform: perspective(800px) rotateY(5deg) rotateX(-3deg);
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 30px rgba(232,80,106,0.3),
+              0 0 60px rgba(232,80,106,0.15),
+              0 0 100px rgba(232,80,106,0.05);
+}
+
+/* Timeline connector */
+.timeline-line {
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(180deg, var(--rose-light), var(--rose));
+  margin: 0 auto;
+  opacity: 0.4;
+}
+
+/* Unlock badge */
+.unlock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--rose), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- Floating hearts layer -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- Nav dots -->
+<nav class="nav-dots" id="navDots">
+  <div class="nav-dot active" onclick="scrollToSection(0)" title="Home"></div>
+  <div class="nav-dot" onclick="scrollToSection(1)" title="🎂 Cake"></div>
+  <div class="nav-dot" onclick="scrollToSection(2)" title="💌 Letter"></div>
+  <div class="nav-dot" onclick="scrollToSection(3)" title="🍫 Chocolate"></div>
+  <div class="nav-dot" onclick="scrollToSection(4)" title="🌹 Rose"></div>
+  <div class="nav-dot" onclick="scrollToSection(5)" title="🎁 Gift"></div>
+  <div class="nav-dot" onclick="scrollToSection(6)" title="🗺️ Map"></div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero" class="section">
+  <div class="hero-bg-anim"></div>
+  <div id="petals-container"></div>
+
+  <div style="position:relative;z-index:10;text-align:center;">
+    <div class="hero-counter">✦ Six Months of Us ✦</div>
+    <h1 class="hero-title">
+      Happy 6 Months
+      <em>My Preetika 🌸</em>
+    </h1>
+    <p class="hero-subtitle">For my Jigglypuff · My Fruitiikaa · My Pree · My Tree</p>
+    <div class="hero-cta">
+      <button class="btn-start" onclick="scrollToSection(1)">Open Your Gifts 🎁</button>
+    </div>
+    <div class="heart-bounce">💕</div>
+  </div>
+</section>
+
+<!-- ========== CAKE SECTION ========== -->
+<section id="cake-section" class="section" data-index="1">
+  <div class="unlock-badge reveal">🎂 Gift 1 of 5</div>
+  <h2 class="section-title reveal">Make a Wish</h2>
+  <p class="section-sub reveal">Blow out all 6 candles to reveal your first gift</p>
+
+  <div class="game-wrap card-3d glow reveal">
+    <span class="cake-visual">🎂</span>
+    <p class="game-instructions">Click each candle to blow it out!</p>
+
+    <div class="candles-row" id="candlesRow"></div>
+    <p id="candle-progress">0 / 6 candles blown 🕯️</p>
+
+    <div class="prize-reveal" id="cake-prize">
+      <div class="prize-emoji">🎂</div>
+      <div class="prize-text">Your Birthday Cake Awaits!</div>
+      <div class="prize-sub">I'm baking (or buying 😅) your absolute favorite cake — just for you, my love 🌸</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LETTER SECTION ========== -->
+<section id="letter-section" class="section" data-index="2">
+  <div class="unlock-badge reveal" style="background:linear-gradient(135deg,#9b6b7a,#6a3050);">💌 Gift 2 of 5</div>
+  <h2 class="section-title reveal" style="color:#4a3060;">A Letter From My Heart</h2>
+  <p class="section-sub reveal" style="color:#9b6b7a;">Unscramble the word to open the envelope</p>
+
+  <div class="game-wrap card-3d reveal" style="background:rgba(255,255,255,0.85);">
+    <div id="word-game" class="word-scramble-game">
+      <p style="color:#9b6b7a;font-size:0.9rem;margin-bottom:8px;">What do I call you that no one else does?</p>
+      <div class="scramble-word" id="scrambleWord">JAFUIRKTIA</div>
+      <p class="scramble-hint">Hint: It sounds like a tropical fruit + a name 🍓</p>
+      <br>
+      <input class="scramble-input" id="scrambleInput" type="text" placeholder="Type your answer..." autocomplete="off"/>
+      <br>
+      <button class="guess-btn" onclick="checkScramble()">Guess 💜</button>
+      <p id="scramble-msg" style="margin-top:12px;font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--rose);min-height:28px;"></p>
+    </div>
+
+    <!-- Envelope -->
+    <div id="envelope-area" style="display:none;text-align:center;">
+      <p style="color:#9b6b7a;margin-bottom:20px;font-style:italic;">Click the envelope to open your letter 💌</p>
+      <div class="envelope-container" onclick="openEnvelope()">
+        <div class="envelope" id="theEnvelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-bottom"></div>
+          <div class="envelope-left"></div>
+          <div class="envelope-right"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-seal">💜</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-inside" id="theLetter">
+      <p>My dearest Preetika,</p>
+      <p>Six months ago, the universe decided to do something incredibly kind — it brought you into my life. And honestly? I had no idea what I was getting myself into. 😊</p>
+      <p>You are the Jigglypuff who sings me to sleep when the world is too loud. You are my Fruitiikaa — sweet, bright, and impossible to ignore. You are my Pree — the name that fits you perfectly because nothing about you is ordinary.</p>
+      <p>These six months have been my favorite chapters of life. Every text, every laugh, every tiny moment — I've kept them all safely in my heart.</p>
+      <p>Thank you for being you. Thank you for being mine. Here's to forever more. 🌸</p>
+      <div class="sign">With all my love,<br>Yours always 💕</div>
+    </div>
+
+    <div class="prize-reveal" id="letter-prize" style="margin-top:20px;">
+      <div class="prize-emoji">💌</div>
+      <div class="prize-text">A Handwritten Letter!</div>
+      <div class="prize-sub">A real handwritten version of this letter is waiting for you — sealed with a kiss 💋</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CHOCOLATE SECTION ========== -->
+<section id="choco-section" class="section" data-index="3">
+  <div class="unlock-badge reveal" style="background:linear-gradient(135deg,#8b4513,#5c2e0e);">🍫 Gift 3 of 5</div>
+  <h2 class="section-title reveal">Sweet Like You</h2>
+  <p class="section-sub reveal">Match all the chocolate pairs to reveal your gift</p>
+
+  <div class="game-wrap card-3d reveal" style="background:rgba(30,10,5,0.8);border:1px solid rgba(212,168,83,0.2);">
+    <p class="game-instructions" style="color:rgba(249,199,132,0.7);">Click to flip and find matching pairs!</p>
+    <p id="choco-counter" style="color:var(--gold);">Pairs found: 0 / 8 🍫</p>
+
+    <div class="choco-grid" id="chocoGrid"></div>
+
+    <div class="prize-reveal" id="choco-prize" style="background:linear-gradient(135deg,rgba(255,243,224,0.1),rgba(255,228,196,0.1));border-color:var(--gold);">
+      <div class="prize-emoji">🍫</div>
+      <div class="prize-text" style="color:var(--gold);">Your Favorite Chocolates!</div>
+      <div class="prize-sub" style="color:rgba(249,199,132,0.8);">A beautiful box of your absolute favorite chocolates, chosen just for you 🎀</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ROSE SECTION ========== -->
+<section id="rose-section" class="section" data-index="4">
+  <div class="unlock-badge reveal">🌹 Gift 4 of 5</div>
+  <h2 class="section-title reveal">A Garden For You</h2>
+  <p class="section-sub reveal">Tap each bud to make it bloom — all 15 roses for your gift!</p>
+
+  <div class="game-wrap card-3d glow reveal">
+    <p class="game-instructions">Watch your garden come alive 🌸</p>
+    <p id="rose-counter">Bloomed: 0 / 15 🌹</p>
+
+    <div class="rose-garden" id="roseGarden"></div>
+
+    <button class="bloom-all-btn" id="bloomAllBtn" onclick="bloomAll()">Bloom All at Once 🌸</button>
+
+    <div class="prize-reveal" id="rose-prize">
+      <div class="prize-emoji">🌹</div>
+      <div class="prize-text">A Bouquet of Real Roses!</div>
+      <div class="prize-sub">Fresh, beautiful roses — as beautiful as you are, my Pree 🌸</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SPECIAL GIFT SECTION ========== -->
+<section id="special-section" class="section" data-index="5">
+  <div class="unlock-badge reveal" style="background:linear-gradient(135deg,var(--gold),#a07830);">✨ The Special Gift</div>
+  <h2 class="section-title reveal" style="color:var(--gold);">Gift 5 of 5</h2>
+  <p class="section-sub reveal">The one that can't fit on a screen...</p>
+
+  <div class="game-wrap reveal" style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,168,83,0.3);backdrop-filter:blur(20px);">
+    <div class="gift-box-3d" id="giftBox" onclick="openGift()">
+      <div class="gift-base"></div>
+      <div class="gift-ribbon-v"></div>
+      <div class="gift-ribbon-h"></div>
+      <div class="gift-lid"></div>
+      <div class="gift-bow">🎀</div>
+    </div>
+
+    <p style="color:rgba(255,255,255,0.6);text-align:center;font-style:italic;margin-bottom:20px;">Click the gift box ↑</p>
+
+    <div id="special-msg" style="display:none;animation:fadeInUp 0.8s ease forwards;">
+      <div class="sparkle-row">✨ 💕 ✨ 💕 ✨</div>
+      <p class="mystery-text">
+        This gift is <span class="gold">too special</span> for a screen.<br><br>
+        It lives in the real world, wrapped in love, waiting for the perfect moment when I look into your eyes and hand it to you. 💕<br><br>
+        <span class="gold">No spoilers. Just trust me.</span>
+      </p>
+      <div class="sparkle-row">🌹 💫 🌸 💫 🌹</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MAP SECTION ========== -->
+<section id="map-section" data-index="6">
+  <div style="text-align:center;margin-bottom:40px;">
+    <div class="unlock-badge reveal" style="background:linear-gradient(135deg,#2c3e8c,#1a2460);">🗺️ Our World</div>
+    <h2 class="section-title reveal" style="color:#2c3e8c;">Everywhere I Go, I See You</h2>
+    <p class="section-sub reveal" style="color:#5a6ab0;">Every corner of the world bears your name 🌍</p>
+  </div>
+  <div id="world-map-svg-wrap" class="reveal">
+    <div class="map-tooltip" id="mapTooltip"></div>
+    <!-- Simplified illustrative world map SVG -->
+    <svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" style="background:linear-gradient(180deg,#bfdbfe 0%,#93c5fd 40%,#7dd3fc 100%)">
+      <defs>
+        <radialGradient id="oceanGrad" cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stop-color="#bfdbfe"/>
+          <stop offset="100%" stop-color="#60a5fa"/>
+        </radialGradient>
+        <filter id="landShadow">
+          <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="rgba(0,0,0,0.15)"/>
+        </filter>
+      </defs>
+      <rect width="960" height="500" fill="url(#oceanGrad)"/>
+      <!-- Ocean sparkles -->
+      <g opacity="0.3" fill="#fff">
+        <circle cx="80" cy="80" r="2"/><circle cx="200" cy="120" r="1.5"/><circle cx="880" cy="90" r="2"/>
+        <circle cx="750" cy="200" r="1.5"/><circle cx="50" cy="300" r="2"/><circle cx="920" cy="350" r="1.5"/>
+        <circle cx="450" cy="450" r="2"/><circle cx="600" cy="480" r="1.5"/>
+      </g>
+
+      <!-- NORTH AMERICA -->
+      <g filter="url(#landShadow)">
+        <path d="M 100 60 L 280 60 L 310 80 L 320 110 L 290 150 L 310 180 L 300 220 L 270 250 L 260 290 L 230 310 L 200 300 L 180 270 L 160 260 L 140 240 L 120 210 L 100 190 L 80 160 L 70 120 Z" fill="#86efac" stroke="#4ade80" stroke-width="1.5"/>
+        <!-- Mexico/Central -->
+        <path d="M 200 300 L 230 310 L 240 340 L 220 360 L 200 350 L 190 330 Z" fill="#86efac" stroke="#4ade80" stroke-width="1"/>
+      </g>
+
+      <!-- GREENLAND -->
+      <g filter="url(#landShadow)">
+        <path d="M 290 30 L 360 25 L 380 50 L 370 80 L 340 90 L 300 80 L 285 55 Z" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1"/>
+      </g>
+
+      <!-- SOUTH AMERICA -->
+      <g filter="url(#landShadow)">
+        <path d="M 220 360 L 260 355 L 290 370 L 310 400 L 320 440 L 300 470 L 270 480 L 245 460 L 230 430 L 215 400 L 205 375 Z" fill="#fde68a" stroke="#fbbf24" stroke-width="1.5"/>
+      </g>
+
+      <!-- EUROPE -->
+      <g filter="url(#landShadow)">
+        <path d="M 420 60 L 500 55 L 530 70 L 540 95 L 520 115 L 490 120 L 480 140 L 460 145 L 440 130 L 420 110 L 410 85 Z" fill="#fca5a5" stroke="#f87171" stroke-width="1.5"/>
+        <!-- UK -->
+        <path d="M 400 75 L 415 72 L 418 88 L 406 92 Z" fill="#fca5a5" stroke="#f87171" stroke-width="1"/>
+      </g>
+
+      <!-- AFRICA -->
+      <g filter="url(#landShadow)">
+        <path d="M 430 155 L 520 150 L 545 170 L 550 220 L 540 280 L 520 340 L 490 380 L 460 385 L 440 360 L 420 310 L 415 250 L 420 200 Z" fill="#fcd34d" stroke="#f59e0b" stroke-width="1.5"/>
+      </g>
+
+      <!-- RUSSIA / CENTRAL ASIA -->
+      <g filter="url(#landShadow)">
+        <path d="M 530 55 L 800 45 L 820 70 L 810 100 L 760 110 L 700 115 L 640 120 L 590 115 L 555 105 L 535 85 Z" fill="#c4b5fd" stroke="#a78bfa" stroke-width="1.5"/>
+      </g>
+
+      <!-- MIDDLE EAST -->
+      <g filter="url(#landShadow)">
+        <path d="M 540 120 L 600 118 L 620 140 L 610 165 L 580 170 L 555 155 Z" fill="#fde68a" stroke="#fbbf24" stroke-width="1"/>
+      </g>
+
+      <!-- SOUTH ASIA / INDIA -->
+      <g filter="url(#landShadow)">
+        <path d="M 620 120 L 690 115 L 710 140 L 705 180 L 680 210 L 655 215 L 630 190 L 615 155 Z" fill="#86efac" stroke="#4ade80" stroke-width="1.5"/>
+      </g>
+
+      <!-- SOUTHEAST ASIA -->
+      <g filter="url(#landShadow)">
+        <path d="M 720 135 L 780 130 L 800 150 L 790 175 L 760 180 L 730 165 Z" fill="#86efac" stroke="#4ade80" stroke-width="1"/>
+        <!-- Indonesia hint -->
+        <ellipse cx="790" cy="195" rx="25" ry="10" fill="#86efac" stroke="#4ade80" stroke-width="1"/>
+        <ellipse cx="830" cy="200" rx="20" ry="9" fill="#86efac" stroke="#4ade80" stroke-width="1"/>
+      </g>
+
+      <!-- EAST ASIA / CHINA / JAPAN -->
+      <g filter="url(#landShadow)">
+        <path d="M 750 100 L 840 95 L 860 115 L 855 145 L 820 155 L 780 150 L 755 130 Z" fill="#fca5a5" stroke="#f87171" stroke-width="1.5"/>
+        <!-- Japan -->
+        <ellipse cx="875" cy="120" rx="12" ry="20" fill="#fca5a5" stroke="#f87171" stroke-width="1" transform="rotate(-20,875,120)"/>
+      </g>
+
+      <!-- AUSTRALIA -->
+      <g filter="url(#landShadow)">
+        <path d="M 780 310 L 870 305 L 900 330 L 905 370 L 880 400 L 840 405 L 800 390 L 775 360 L 770 330 Z" fill="#fcd34d" stroke="#f59e0b" stroke-width="1.5"/>
+      </g>
+
+      <!-- ICELAND -->
+      <g filter="url(#landShadow)">
+        <ellipse cx="380" cy="48" rx="22" ry="12" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1"/>
+      </g>
+
+      <!-- GRID LINES (subtle) -->
+      <g stroke="rgba(255,255,255,0.2)" stroke-width="0.5" fill="none">
+        <line x1="0" y1="170" x2="960" y2="170"/>
+        <line x1="0" y1="250" x2="960" y2="250"/>
+        <line x1="0" y1="330" x2="960" y2="330"/>
+        <line x1="240" y1="0" x2="240" y2="500"/>
+        <line x1="480" y1="0" x2="480" y2="500"/>
+        <line x1="720" y1="0" x2="720" y2="500"/>
+      </g>
+
+      <!-- ===== PINS ===== -->
+      <!-- Paris: 48.85°N, 2.35°E → approx x=482, y=85 -->
+      <g class="map-pin" data-label="Preetika" data-city="Paris of my heart 🗼" transform="translate(482,85)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Preetika 💕</text>
+      </g>
+
+      <!-- Tokyo: 35.68°N, 139.69°E → approx x=868, y=115 -->
+      <g class="map-pin" data-label="Jigglypuff" data-city="Tokyo dreams 🌸" transform="translate(868,115)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Jigglypuff 💕</text>
+      </g>
+
+      <!-- New York: 40.71°N, 74°W → approx x=155, y=105 -->
+      <g class="map-pin" data-label="Fruitiikaa" data-city="New York City 🗽" transform="translate(155,105)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Fruitiikaa 💕</text>
+      </g>
+
+      <!-- Sydney: 33.87°S, 151.21°E → approx x=862, y=375 -->
+      <g class="map-pin" data-label="Pree" data-city="Sydney sunshine ☀️" transform="translate(862,375)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Pree 💕</text>
+      </g>
+
+      <!-- London: 51.51°N, 0.13°W → approx x=465, y=78 -->
+      <g class="map-pin" data-label="Tree" data-city="London love 🎡" transform="translate(465,78)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Tree 💕</text>
+      </g>
+
+      <!-- Kathmandu: 27.71°N, 85.31°E → approx x=667, y=148 -->
+      <g class="map-pin" data-label="Preetika" data-city="Kathmandu 🏔️ — Our City!" transform="translate(667,148)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#ff2d55" stroke="#fff" stroke-width="2"/>
+        <circle cx="0" cy="-9" r="5" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="12" fill="#b0324a" font-weight="bold">Preetika 🌸</text>
+      </g>
+
+      <!-- Rio: 22.90°S, 43.17°W → approx x=245, y=378 -->
+      <g class="map-pin" data-label="Jigglypuff" data-city="Rio de Janeiro 🌊" transform="translate(245,378)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Jigglypuff 💕</text>
+      </g>
+
+      <!-- Moscow: 55.75°N, 37.62°E → approx x=572, y=72 -->
+      <g class="map-pin" data-label="Fruitiikaa" data-city="Moscow ❄️" transform="translate(572,72)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Fruitiikaa 💕</text>
+      </g>
+
+      <!-- Singapore: 1.35°N, 103.82°E → approx x=762, y=248 -->
+      <g class="map-pin" data-label="Pree" data-city="Singapore 🌃" transform="translate(762,248)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Pree 💕</text>
+      </g>
+
+      <!-- Istanbul: 41.01°N, 28.97°E → approx x=548, y=100 -->
+      <g class="map-pin" data-label="Tree" data-city="Istanbul 🕌" transform="translate(548,100)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Tree 💕</text>
+      </g>
+
+      <!-- Cairo: 30.04°N, 31.24°E → approx x=551, y=140 -->
+      <g class="map-pin" data-label="Jigglypuff" data-city="Cairo 🏺" transform="translate(555,140)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Jigglypuff 💕</text>
+      </g>
+
+      <!-- San Francisco: 37.77°N, 122.42°W → approx x=85, y=115 -->
+      <g class="map-pin" data-label="Tree" data-city="San Francisco 🌉" transform="translate(85,115)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Tree 💕</text>
+      </g>
+
+      <!-- Johannesburg: 26.20°S, 28.05°E → approx x=530, y=345 -->
+      <g class="map-pin" data-label="Pree" data-city="Johannesburg 🦁" transform="translate(530,345)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Pree 💕</text>
+      </g>
+
+      <!-- Stockholm: 59.33°N, 18.07°E → approx x=503, y=62 -->
+      <g class="map-pin" data-label="Fruitiikaa" data-city="Stockholm 🌿" transform="translate(512,62)" onclick="showMapTooltip(event,this)">
+        <ellipse cx="0" cy="18" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
+        <path d="M0,-16 C-10,-16 -10,-4 0,0 C10,-4 10,-16 0,-16Z" fill="#e8506a" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="0" cy="-9" r="4" fill="#fff"/>
+        <text y="28" text-anchor="middle" font-family="Dancing Script,cursive" font-size="11" fill="#1a0a0f" font-weight="bold">Fruitiikaa 💕</text>
+      </g>
+
+      <!-- Title -->
+      <text x="480" y="490" text-anchor="middle" font-family="Dancing Script,cursive" font-size="16" fill="rgba(44,62,140,0.7)">Every place on Earth belongs to you 💕</text>
+    </svg>
+  </div>
+
+  <p style="text-align:center;margin-top:24px;font-family:'Dancing Script',cursive;font-size:1.3rem;color:#5a6ab0;" class="reveal">
+    From every mountain to every ocean — you're written everywhere 💕
+  </p>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer style="background:#1a0a0f;color:rgba(255,255,255,0.6);text-align:center;padding:60px 24px;">
+  <div style="font-family:'Dancing Script',cursive;font-size:2.5rem;color:var(--rose);margin-bottom:12px;">
+    Happy 6 Months, My Love 💕
+  </div>
+  <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;margin-bottom:8px;color:rgba(255,255,255,0.8);">
+    Preetika · Jigglypuff · Fruitiikaa · Pree · Tree
+  </div>
+  <div style="font-size:2rem;margin-top:16px;animation:heartBeat 1.2s ease-in-out infinite;">
+    ❤️
+  </div>
+</footer>
+
+<script>
+// ==============================
+// CURSOR
+// ==============================
+const cursor = document.getElementById('cursor');
+const cursorDot = document.getElementById('cursorDot');
+let mouseX = 0, mouseY = 0;
+let curX = 0, curY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursorDot.style.left = mouseX + 'px';
+  cursorDot.style.top = mouseY + 'px';
+});
+
+function animateCursor() {
+  curX += (mouseX - curX) * 0.12;
+  curY += (mouseY - curY) * 0.12;
+  cursor.style.left = curX + 'px';
+  cursor.style.top = curY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// ==============================
+// PROGRESS BAR
+// ==============================
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = (window.scrollY / h) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  updateNavDots();
+});
+
+// ==============================
+// NAV DOTS
+// ==============================
+const sections = ['hero','cake-section','letter-section','choco-section','rose-section','special-section','map-section'];
+function scrollToSection(i) {
+  document.getElementById(sections[i]).scrollIntoView({ behavior: 'smooth' });
+}
+function updateNavDots() {
+  const dots = document.querySelectorAll('.nav-dot');
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+      dots.forEach(d => d.classList.remove('active'));
+      dots[i].classList.add('active');
+    }
+  });
+}
+
+// ==============================
+// PETALS (Hero)
+// ==============================
+const petalEmojis = ['🌸','🌺','🌷','💗','💕','✿'];
+const container = document.getElementById('petals-container');
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.top = '-60px';
+  p.style.fontSize = (1 + Math.random()) + 'rem';
+  p.style.animationDuration = (6 + Math.random() * 8) + 's';
+  p.style.animationDelay = (Math.random() * 8) + 's';
+  container.appendChild(p);
+}
+
+// ==============================
+// FLOATING HEARTS on click
+// ==============================
+document.addEventListener('click', e => {
+  for (let i = 0; i < 5; i++) {
+    const h = document.createElement('div');
+    h.className = 'fheart';
+    h.textContent = ['💕','💗','🌸','✨','💖'][Math.floor(Math.random()*5)];
+    h.style.left = (e.clientX + (Math.random()-0.5)*60) + 'px';
+    h.style.top = e.clientY + 'px';
+    h.style.animationDuration = (1.5 + Math.random()) + 's';
+    h.style.animationDelay = (Math.random() * 0.3) + 's';
+    document.getElementById('floatingHearts').appendChild(h);
+    setTimeout(() => h.remove(), 2500);
+  }
+});
+
+// ==============================
+// SCROLL REVEAL
+// ==============================
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ==============================
+// GAME 1: CANDLE BLOW
+// ==============================
+let candlesBlown = 0;
+const totalCandles = 6;
+const candlesRow = document.getElementById('candlesRow');
+
+for (let i = 0; i < totalCandles; i++) {
+  const wrap = document.createElement('div');
+  wrap.className = 'candle-wrap';
+  wrap.innerHTML = `
+    <div class="candle-flame"></div>
+    <div class="candle-wick"></div>
+    <div class="candle-body"></div>
+  `;
+  wrap.addEventListener('click', function() {
+    if (this.classList.contains('blown')) return;
+    this.classList.add('blown');
+    candlesBlown++;
+    document.getElementById('candle-progress').textContent = `${candlesBlown} / ${totalCandles} candles blown 🕯️`;
+    if (candlesBlown === totalCandles) {
+      setTimeout(() => {
+        fireConfetti();
+        document.getElementById('cake-prize').classList.add('show');
+      }, 400);
+    }
+  });
+  candlesRow.appendChild(wrap);
+}
+
+// ==============================
+// GAME 2: WORD SCRAMBLE
+// ==============================
+const answer = 'fruitiikaa';
+let scrambleSolved = false;
+
+function checkScramble() {
+  if (scrambleSolved) return;
+  const input = document.getElementById('scrambleInput').value.toLowerCase().trim();
+  const msg = document.getElementById('scramble-msg');
+
+  if (input === answer || input === 'frutiikaa' || input === 'preetika' || input === 'fruitika') {
+    scrambleSolved = true;
+    msg.textContent = '✨ Yes! That\'s my favorite name for you! ✨';
+    msg.style.color = 'var(--rose)';
+    setTimeout(() => {
+      document.getElementById('word-game').style.display = 'none';
+      document.getElementById('envelope-area').style.display = 'block';
+    }, 1200);
+  } else {
+    msg.textContent = 'Not quite... try again my love 💜';
+    document.getElementById('scrambleInput').classList.add('shake');
+    setTimeout(() => document.getElementById('scrambleInput').classList.remove('shake'), 500);
+  }
+}
+
+document.getElementById('scrambleInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkScramble();
+});
+
+let envelopeOpened = false;
+function openEnvelope() {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+  document.getElementById('theEnvelope').classList.add('open');
+  setTimeout(() => {
+    document.getElementById('theLetter').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('letter-prize').classList.add('show');
+      fireConfetti('purple');
+    }, 800);
+  }, 600);
+}
+
+// ==============================
+// GAME 3: CHOCOLATE MEMORY
+// ==============================
+const chocoEmojis = ['🍫','🍬','🧁','🍰','❤️','🌸','⭐','🎀'];
+const chocoAll = [...chocoEmojis, ...chocoEmojis].sort(() => Math.random() - 0.5);
+const chocoGrid = document.getElementById('chocoGrid');
+let flippedCards = [];
+let matchedPairs = 0;
+let canFlip = true;
+
+chocoAll.forEach((emoji, i) => {
+  const box = document.createElement('div');
+  box.className = 'choco-box';
+  box.dataset.emoji = emoji;
+  box.dataset.index = i;
+  box.innerHTML = `<span style="font-size:0;opacity:0;">${emoji}</span>`;
+  box.addEventListener('click', function() {
+    if (!canFlip || this.classList.contains('matched') || this.classList.contains('flipped')) return;
+    flipCard(this);
+  });
+  chocoGrid.appendChild(box);
+});
+
+function flipCard(card) {
+  card.classList.add('flipped');
+  card.querySelector('span').style.fontSize = '2rem';
+  card.querySelector('span').style.opacity = '1';
+  flippedCards.push(card);
+
+  if (flippedCards.length === 2) {
+    canFlip = false;
+    const [a, b] = flippedCards;
+    if (a.dataset.emoji === b.dataset.emoji) {
+      a.classList.add('matched'); b.classList.add('matched');
+      matchedPairs++;
+      document.getElementById('choco-counter').textContent = `Pairs found: ${matchedPairs} / 8 🍫`;
+      flippedCards = [];
+      canFlip = true;
+      if (matchedPairs === 8) {
+        setTimeout(() => {
+          fireConfetti('chocolate');
+          document.getElementById('choco-prize').classList.add('show');
+        }, 400);
+      }
+    } else {
+      setTimeout(() => {
+        a.classList.remove('flipped'); b.classList.remove('flipped');
+        a.querySelector('span').style.fontSize = '0'; a.querySelector('span').style.opacity = '0';
+        b.querySelector('span').style.fontSize = '0'; b.querySelector('span').style.opacity = '0';
+        flippedCards = [];
+        canFlip = true;
+      }, 900);
+    }
+  }
+}
+
+// ==============================
+// GAME 4: ROSE GARDEN
+// ==============================
+const roseEmojis = ['🌹','🌺','🌸','💐','🌷','🌼','🏵️','🌻','💮','🪷'];
+const roseGarden = document.getElementById('roseGarden');
+let rosesBloomed = 0;
+const totalRoses = 15;
+
+for (let i = 0; i < totalRoses; i++) {
+  const bud = document.createElement('div');
+  bud.className = 'rosebud';
+  bud.textContent = '🥀';
+  bud.addEventListener('click', function() {
+    if (this.classList.contains('bloomed')) return;
+    this.textContent = roseEmojis[i % roseEmojis.length];
+    this.classList.add('bloomed');
+    rosesBloomed++;
+    document.getElementById('rose-counter').textContent = `Bloomed: ${rosesBloomed} / ${totalRoses} 🌹`;
+    if (rosesBloomed === totalRoses) {
+      setTimeout(() => {
+        fireConfetti('rose');
+        document.getElementById('rose-prize').classList.add('show');
+        document.getElementById('bloomAllBtn').style.display = 'none';
+      }, 300);
+    }
+  });
+  roseGarden.appendChild(bud);
+}
+
+function bloomAll() {
+  const buds = document.querySelectorAll('.rosebud:not(.bloomed)');
+  buds.forEach((bud, i) => {
+    setTimeout(() => bud.click(), i * 100);
+  });
+}
+
+// ==============================
+// GAME 5: SPECIAL GIFT
+// ==============================
+function openGift() {
+  const box = document.getElementById('giftBox');
+  if (box.classList.contains('opened')) return;
+  box.classList.add('opened');
+  setTimeout(() => {
+    document.getElementById('special-msg').style.display = 'block';
+    fireConfetti('gold');
+  }, 600);
+}
+
+// ==============================
+// CONFETTI
+// ==============================
+function fireConfetti(type = 'default') {
+  const configs = {
+    default: { colors: ['#e8506a','#ffd700','#f9ccd5','#fff'] },
+    purple:  { colors: ['#9b6b7a','#c4a0d8','#6a3050','#fff5f8'] },
+    chocolate: { colors: ['#8b4513','#d4a853','#ffd700','#f9c784'] },
+    rose:    { colors: ['#e8506a','#ff8fab','#fce7f3','#ff6b8a'] },
+    gold:    { colors: ['#ffd700','#d4a853','#fff','#e8506a'] },
+  };
+  const c = configs[type] || configs.default;
+  confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: c.colors });
+  setTimeout(() => confetti({ particleCount: 60, spread: 120, origin: { y: 0.5 }, colors: c.colors }), 300);
+}
+
+// ==============================
+// SVG MAP TOOLTIPS
+// ==============================
+const mapTooltip = document.getElementById('mapTooltip');
+const mapWrap = document.getElementById('world-map-svg-wrap');
+
+function showMapTooltip(e, el) {
+  const label = el.dataset.label;
+  const city = el.dataset.city;
+  mapTooltip.innerHTML = `<strong>${label}</strong> — ${city}`;
+  const rect = mapWrap.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  mapTooltip.style.left = Math.min(x + 10, rect.width - 200) + 'px';
+  mapTooltip.style.top = (y - 50) + 'px';
+  mapTooltip.style.opacity = '1';
+  // Float hearts on pin click
+  for (let i = 0; i < 4; i++) {
+    const h = document.createElement('div');
+    h.className = 'fheart';
+    h.textContent = ['💕','🌸','✨','💖'][i];
+    h.style.left = e.clientX + (Math.random()-0.5)*40 + 'px';
+    h.style.top = e.clientY + 'px';
+    h.style.animationDuration = (1.5 + Math.random()) + 's';
+    document.getElementById('floatingHearts').appendChild(h);
+    setTimeout(() => h.remove(), 2500);
+  }
+  clearTimeout(mapTooltip._t);
+  mapTooltip._t = setTimeout(() => { mapTooltip.style.opacity = '0'; }, 2500);
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.map-pin')) {
+    mapTooltip.style.opacity = '0';
+  }
+});
+
+// ==============================
+// PERIODIC HEARTS
+// ==============================
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'fheart';
+  h.textContent = ['💕','💗','🌸','✨','💖','🌺'][Math.floor(Math.random()*6)];
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.bottom = '0';
+  h.style.top = 'auto';
+  const dur = 4 + Math.random() * 4;
+  h.style.animation = `floatHeart ${dur}s ease-out forwards`;
+  document.getElementById('floatingHearts').appendChild(h);
+  setTimeout(() => h.remove(), dur * 1000 + 500);
+}, 2000);
+
+// ==============================
+// 3D TILT ON GAME CARDS
+// ==============================
+document.querySelectorAll('.card-3d').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+    card.style.transform = `perspective(800px) rotateY(${x}deg) rotateX(${y}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0)';
+  });
+});
+</script>
+</body>
+</html>
